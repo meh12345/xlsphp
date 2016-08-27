@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Online Excel </title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
+        <link href="./css/fileinput.css" media="all" rel="stylesheet" type="text/css" />
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script> 
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
+	 
+      <script src="./js/fileinput.js" type="text/javascript"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript"></script>
+	  <style>
+	   .panel-body  {
+    word-break:break-all
+}
+	  </style>
+    </head>
+    <body>
+        <div class="container kv-main">
+            <div class="page-header">
+            <h1>Online Excel File Reader <small><i class="glyphicon glyphicon-upload"></i> Please Upload .xls files only</small></h1>
+            </div>
+            <form  id="myForm" action="upload.php" method="post" enctype="multipart/form-data">
+                <input id="doc"  class="file" type="file" name="xls" data-min-file-count="1">
+                <br>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="reset" id="asd" class="btn btn-default">Reset</button>
+            </form>
+            <hr>
+			
+<div class="panel panel-default" >
+    <div class="panel-heading">The suggestions will appear Here</div>
+    <div class="panel-body" id="output1" > <img id="loader" src="30.gif" />  </div>
+  </div>
+</div>
+            <hr>
+            
+            
+            <hr>
+            
+        </div>
+    </body>
+	<script>
+ $("img#loader").hide(); 
+    $("#doc").fileinput({
+        'allowedFileExtensions' : ['xls'],
+    });
+
+  $(document).ready(function() {
+				var options={
+					target: '#output1',
+					 beforeSubmit: function(){ $("img#loader").show(); },
+					 success: function(){ $("img#loader").hide();}
+				}
+           
+            $('#myForm').ajaxForm(options);
+        });
+	$(document).ready(function(){
+    $("#asd").click(function(){
+        $("#output1").empty();
+    });
+});
+ 
+
+	</script>
+</html>
